@@ -92,7 +92,6 @@ st.sidebar.title("📌 Navigasi Menu")
 menu = st.sidebar.radio(
     "Pilih halaman:",
     [
-        "Dashboard",
         "Dataset Overview",
         "Data Cleaning and Transformation",
         "Exploratory Data Analysis",
@@ -161,45 +160,12 @@ def get_model_result_safe(data_for_model):
         st.error(f"Model belum dapat dilatih: {error}")
         return None
 
-# ============================================================
-# 5. HALAMAN DASHBOARD
-# ============================================================
-
-if menu == "Dashboard":
-    st.header("Dashboard Utama")
-    st.write(
-        "Halaman ini memberikan ringkasan dataset yang digunakan "
-        "untuk mengklasifikasikan kondisi pasien ke dalam tiga kelas."
-    )
-
-    total_rows = len(df_raw)
-    total_columns = len(df_raw.columns)
-    missing_total = int(df_raw.isna().sum().sum())
-    duplicate_total = int(df_raw.duplicated().sum())
-
-    c1, c2, c3, c4 = st.columns(4)
-    c1.metric("Jumlah Observasi", f"{total_rows:,}")
-    c2.metric("Jumlah Variabel", total_columns)
-    c3.metric("Missing Values", missing_total)
-    c4.metric("Data Duplikat", duplicate_total)
-
-    st.subheader("Preview Dataset")
-    st.dataframe(df_raw.head(10), use_container_width=True)
-
-    st.subheader("Distribusi Target")
-    show_class_distribution(df_clean)
-
-    st.info(
-        "Mulailah dari Dataset Overview untuk melihat struktur data, "
-        "kemudian lanjutkan ke Data Cleaning, EDA, Feature Engineering, "
-        "dan Modeling."
-    )
 
 # ============================================================
-# 6. DATASET OVERVIEW
+# 5. DATASET OVERVIEW
 # ============================================================
 
-elif menu == "Dataset Overview":
+if menu == "Dataset Overview":
     st.header("1. Dataset Overview")
     st.write(
         "Bagian ini menampilkan gambaran awal dataset sebelum proses "
@@ -252,8 +218,8 @@ elif menu == "Dataset Overview":
 
 
 # ============================================================
-# 7. DATA CLEANING AND TRANSFORMATION
-# ============================================================
+# 6. DATA CLEANING AND TRANSFORMATION
+# ===========================================================
 
 elif menu == "Data Cleaning and Transformation":
     st.header("2. Data Cleaning and Transformation")
@@ -356,7 +322,7 @@ elif menu == "Data Cleaning and Transformation":
     )
 
 # ============================================================
-# 8. EXPLORATORY DATA ANALYSIS (EDA)
+# 7. EXPLORATORY DATA ANALYSIS (EDA)
 # ============================================================
 
 elif menu == "Exploratory Data Analysis":
@@ -435,7 +401,7 @@ elif menu == "Exploratory Data Analysis":
     show_class_distribution(df_clean, "Distribusi Kelas Diabetes")
 
 # ============================================================
-# 9. FEATURE ENGINEERING
+# 8. FEATURE ENGINEERING
 # ============================================================
 
 elif menu == "Feature Engineering":
@@ -519,7 +485,7 @@ elif menu == "Feature Engineering":
 
 
 # ============================================================
-# 10. DATA PASIEN
+# 9. DATA PASIEN
 # ============================================================
 
 elif menu == "Data Pasien":
@@ -536,7 +502,7 @@ elif menu == "Data Pasien":
     )
 
 # ============================================================
-# 11. MODELING
+# 10. MODELING
 # ============================================================
 
 elif menu == "Modeling":
@@ -580,7 +546,7 @@ elif menu == "Modeling":
         )
 
 # ============================================================
-# 12. HASIL KLASIFIKASI
+# 11. HASIL KLASIFIKASI
 # ============================================================
 
 elif menu == "Hasil Klasifikasi":
@@ -635,7 +601,7 @@ elif menu == "Hasil Klasifikasi":
         )
 
 # ============================================================
-# 13. PREDIKSI PASIEN BARU
+# 12. PREDIKSI PASIEN BARU
 # ============================================================
 
 elif menu == "Prediksi Pasien":
@@ -742,7 +708,7 @@ elif menu == "Prediksi Pasien":
 
 
 # ============================================================
-# 14. LAPORAN PENELITIAN
+# 13. LAPORAN PENELITIAN
 # ============================================================
 
 elif menu == "Laporan Penelitian":
